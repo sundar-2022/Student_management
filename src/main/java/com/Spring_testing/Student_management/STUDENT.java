@@ -3,13 +3,13 @@ package com.Spring_testing.Student_management;
 public class STUDENT {
     private String name;
     private int age;
-    private int RegNo;
+    private int regNo;
     private String state;
 
     public STUDENT(String name, int age, int regNo, String state) {
         this.name = name;
         this.age = age;
-        this.RegNo = regNo;
+        this.regNo = regNo;
         this.state = state;
     }
 
@@ -29,12 +29,12 @@ public class STUDENT {
         this.age = age;
     }
 
-    public int getRegNo() {
-        return RegNo;
+    public int getregNo() {
+        return regNo;
     }
 
-    public void setRegNo(int regNo) {
-        this.RegNo = regNo;
+    public void setregNo(int regNo) {
+        this.regNo = regNo;
     }
 
     public String getState() {

@@ -11,36 +11,37 @@ public class StudentController {
     Map<Integer,STUDENT> db = new HashMap<>();
 
     @GetMapping("/get_student")
-    public STUDENT getStudent(@RequestParam("q") int RegNo){
-        return db.get(RegNo);
+    public STUDENT getStudent(@RequestParam("q") int regNo){
+        return db.get(regNo);
     }
 
     @PostMapping("/add_student")
     public String addStudent(@RequestBody STUDENT student){
         if(student==null) return "Invalid Student";
-        int RegNo = student.getRegNo();
-        db.put(RegNo,student);
+        int regNo = student.getregNo();
+        db.put(regNo,student);
         return "Student Added Successfully";
     }
 
     @DeleteMapping("/delete_student")
-    public String DeleteStudent(@RequestParam("q") int RegNo){
-        db.remove(RegNo);
+    public String DeleteStudent(@RequestParam("q") int regNo){
+        db.remove(regNo);
         return "Deleted successfully";
     }
 
     @PutMapping("/update_student")
     public String updateStudent(@RequestBody STUDENT student){
-        int RegNo = student.getRegNo();
-        try {
-            db.replace(RegNo, student);
-            db.forEach((k,v)->{
-                System.out.println(k+"="+v);
-            });
-        }
-        catch(Exception e){
-            return e.getMessage();
-        }
+        int regNo = student.getregNo();
+        db.replace(regNo, student);
+//        try {
+//            db.replace(RegNo, student);
+//            db.forEach((k,v)->{
+//                System.out.println(k+"="+v);
+//            });
+//        }
+//        catch(Exception e){
+//            return e.getMessage();
+//        }
         return "Updated Successfully";
     }
 }
