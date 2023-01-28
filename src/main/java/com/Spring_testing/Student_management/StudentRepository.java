@@ -17,14 +17,14 @@ public class StudentRepository {
     }
 
     public String addStudent(STUDENT student) {
-        if (student == null) return "Invalid Student";
         int regNo = student.getregNo();
         db.put(regNo, student);
         return "Student Added Successfully";
     }
     public String DeleteStudent(int regNo) {
-        if (!db.containsKey(regNo))
-            return "Invalid regNo";
+        if (!db.containsKey(regNo)) {
+            return "Invalid id";
+        }
         db.remove(regNo);
         return "Deleted successfully";
     }
