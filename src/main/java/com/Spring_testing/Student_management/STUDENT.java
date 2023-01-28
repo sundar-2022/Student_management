@@ -42,6 +42,7 @@ public class STUDENT {
     }
 
     public void setState(String state) {
+
         this.state = state;
     }
 }

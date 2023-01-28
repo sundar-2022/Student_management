@@ -1,47 +1,33 @@
 package com.Spring_testing.Student_management;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import javax.websocket.server.PathParam;
 
 @RestController
 public class StudentController {
+    @Autowired
+    StudentService studentService;
 
-    Map<Integer,STUDENT> db = new HashMap<>();
+    @GetMapping("/get_student/{regNo}")
+    public STUDENT getStudent(@PathVariable("regNo") int regNo){
 
-    @GetMapping("/get_student")
-    public STUDENT getStudent(@RequestParam("q") int regNo){
-        return db.get(regNo);
+        return studentService.getStudent(regNo);
     }
 
     @PostMapping("/add_student")
     public String addStudent(@RequestBody STUDENT student){
-        if(student==null) return "Invalid Student";
-        int regNo = student.getregNo();
-        db.put(regNo,student);
-        return "Student Added Successfully";
+        return studentService.addStudent(student);
     }
 
     @DeleteMapping("/delete_student")
     public String DeleteStudent(@RequestParam("q") int regNo){
-        db.remove(regNo);
-        return "Deleted successfully";
+        return studentService.DeleteStudent(regNo);
     }
 
     @PutMapping("/update_student")
     public String updateStudent(@RequestBody STUDENT student){
-        int regNo = student.getregNo();
-        db.replace(regNo, student);
-//        try {
-//            db.replace(RegNo, student);
-//            db.forEach((k,v)->{
-//                System.out.println(k+"="+v);
-//            });
-//        }
-//        catch(Exception e){
-//            return e.getMessage();
-//        }
-        return "Updated Successfully";
+        return studentService.updateStudent(student);
     }
 }
